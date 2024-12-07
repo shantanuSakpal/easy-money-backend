@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Invoice</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container bg-white shadow-md p-8">
+        <!-- Invoice Header -->
+        <div class="invoice-header mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">{{payerBusinessName}}</h1>
+                <p class="text-gray-600">{{payerAddress}}</p>
+                <p class="text-gray-600">{{payerEmail}} - {{payerPhone}}</p>
+            </div>
+            <div class="text-right">
+                <h2 class="text-xl font-bold text-gray-800">PAYMENT SLIP</h2>
+                <p class="text-gray-600">Date: {{currentDate}}</p>
+                <p class="text-gray-600">Invoice #: {{invoiceNumber}}</p>
+            </div>
+        </div>
+
+        <!-- Receiver Details -->
+        <div class="mb-6 pb-4 border-b">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Receiver Details:</h3>
+            <div class="invoice-header">
+                <div>
+                    <p class="text-gray-600">Name: {{recipientName}}</p>
+                    <p class="text-gray-600">Department/Team: {{recipientBusinessName}}</p>
+                    <p class="text-gray-600">Email: {{recipientEmail}}</p>
+                    <p class="text-gray-600">Billed at: {{recipientCountry}} - {{recipientPostalCode}}</p>
+                </div>
+            </div>
+            <p class="text-gray-600 mt-2">Wallet Address: {{recipientWalletAddress}}</p>
+        </div>
+
+        <!-- Description and Notes -->
+        <div class="mb-6 pb-4 border-b">
+            <p class="text-gray-600">Description: {{note}}</p>
+        </div>
+        <div class="mb-6 pb-4 border-b">
+            <p class="text-gray-600 mb-2">Note: {{recipientNotes}}</p>
+            <div>
+                <a
+                  class="text-blue-500 underline mb-5"
+                  href="{{transactionLink}}"
+                >
+                  View Transaction on Request Network
+                </a>
+            </div>
+        </div>
+
+        <!-- Payment Details Table -->
+        <div class="mb-8">
+            <table>
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="text-left">Description</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Base</td>
+                        <td class="text-right">{{recipientAmount}} ETH</td>
+                    </tr>
+                    <tr>
+                        <td>Deductions</td>
+                        <td class="text-right">{{recipientDeductions}} ETH</td>
+                    </tr>
+                    <tr class="font-bold">
+                        <td>Net Pay</td>
+                        <td class="text-right">{{netPay}} ETH</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-sm text-gray-600 border-t pt-4">
+            <p>This is a computer-generated document. No signature required.</p>
+        </div>
+    </div>
+</body>
+</html>
