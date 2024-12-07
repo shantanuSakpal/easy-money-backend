@@ -69,15 +69,15 @@ const sendInvoiceEmail = async (req, res) => {
     }
 
     // Generate PDF with Puppeteer
-    // browser = await puppeteer.launch({
-    //   headless: "new",
-    //   args: ["--no-sandbox"],
-    // });
-
     browser = await puppeteer.launch({
-      executablePath: "/opt/render/.cache/puppeteer/chrome-linux/chrome",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: "new",
+      args: ["--no-sandbox"],
     });
+
+    // browser = await puppeteer.launch({
+    //   executablePath: "/opt/render/.cache/puppeteer/chrome-linux/chrome",
+    //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    // });
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: "networkidle0" });
 
