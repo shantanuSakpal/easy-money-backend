@@ -6,6 +6,7 @@ const Handlebars = require("handlebars");
 require("dotenv").config();
 
 const sendInvoiceEmail = async (req, res) => {
+  let browser;
   try {
     const {
       recipient = {},
@@ -73,7 +74,7 @@ const sendInvoiceEmail = async (req, res) => {
     //   args: ["--no-sandbox"],
     // });
 
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       executablePath: "/opt/render/.cache/puppeteer/chrome-linux/chrome",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
