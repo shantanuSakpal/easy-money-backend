@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://easy-money-request-network.vercel.app/",
+  "https://easy-money-request-network.vercel.app",
 ];
 
 // Middleware
