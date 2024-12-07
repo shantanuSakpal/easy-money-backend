@@ -4,9 +4,23 @@ const invoiceRoutes = require("./routes/emailRoutes");
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 8080;
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://easy-money-request-network.vercel.app/",
+];
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
